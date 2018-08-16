@@ -867,9 +867,7 @@ function printPathNoParens(path, options, print, args) {
           parts.push(
             concat([
               "{",
-              options.bracketSpacing ? " " : "",
               concat(grouped),
-              options.bracketSpacing ? " " : "",
               "}"
             ])
           );
