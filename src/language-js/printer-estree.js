@@ -869,7 +869,7 @@ function printPathNoParens(path, options, print, args) {
               "{",
               concat(grouped),
               "}"
-            ])
+            ]).replace("{ ", "{").replace(" }", "}")
           );
         } else if (grouped.length >= 1) {
           parts.push(
@@ -878,14 +878,14 @@ function printPathNoParens(path, options, print, args) {
                 "{",
                 indent(
                   concat([
-                    softline,
+                    options.bracketSpacing ? line : softline,
                     join(concat([",", line]), grouped)
                   ])
                 ),
                 ifBreak(shouldPrintComma(options) ? "," : ""),
-                softline,
+                options.bracketSpacing ? line : softline,
                 "}"
-              ])
+              ]).replace("{ ", "{").replace(" }", "}")
             )
           );
         }
