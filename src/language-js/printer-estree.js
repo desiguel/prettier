@@ -875,15 +875,15 @@ function printPathNoParens(path, options, print, args) {
           parts.push(
             group(
               concat([
-                "X {",
+                "{",
                 indent(
                   concat([
-                    options.bracketSpacing ? line : softline,
+                    softline,
                     join(concat([",", line]), grouped)
                   ])
                 ),
                 ifBreak(shouldPrintComma(options) ? "," : ""),
-                options.bracketSpacing ? line : softline,
+                softline,
                 "}"
               ])
             )
