@@ -872,22 +872,23 @@ function printPathNoParens(path, options, print, args) {
             ])
           );
         } else if (grouped.length >= 1) {
-          parts.push(
-            group(
+
+          let importGroup = group(
               concat([
-                "{",
-                indent(
-                  concat([
-                    softline,
-                    join(concat([",", line]), grouped)
-                  ])
-                ),
-                ifBreak(shouldPrintComma(options) ? "," : ""),
-                softline,
-                "}"
+                  "{",
+                  indent(
+                      concat([
+                          options.bracketSpacing ? line : softline,
+                          join(concat([",", line]), grouped)
+                      ])
+                  ),
+                  ifBreak(shouldPrintComma(options) ? "," : ""),
+                  options.bracketSpacing ? line : softline,
+                  "}"
               ])
-            )
           );
+          importGroup = importGroup.replace("{ ", "{").replace(" }", "}");
+          parts.push(importGroup);
         }
 
         parts.push(" from ");
